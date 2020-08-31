@@ -26,13 +26,13 @@ Microsoft and the trademarks listed at <https://www.microsoft.com/en-us/legal/in
 
 <!-- TOC -->
 
-- [App modernization hands-on lab step-by-step](#app-modernization-hands-on-lab-step-by-step)
-  - [Abstract and learning objectives](#abstract-and-learning-objectives)
-  - [Overview](#overview)
-  - [Solution architecture](#solution-architecture)
-  - [Requirements](#requirements)
-  - [Exercise 1: Migrate the on-premises database to Azure SQL Database](#exercise-1-migrate-the-on-premises-database-to-azure-sql-database)
-    - [Task 1: Configure the ContosoInsurance database on the SqlServer2008 VM](#task-1-configure-the-contosoinsurance-database-on-the-sqlserver2008-vm)
+- [应用现代化实践实验室分步完成](#应用现代化实践实验室分步完成)
+  - [抽象和学习目标](#抽象和学习目标)
+  - [概述](#概述)
+  - [解决方案架构](#解决方案架构)
+  - [要求](#要求)
+  - [练习 1: 将本地数据库迁移到 Azure SQL 数据库](#练习-1-将本地数据库迁移到-azure-sql-数据库)
+    - [任务 1：在 SqlServer2008 VM 上配置 ContosoInsurance 数据库](#任务-1在-sqlserver2008-vm-上配置-contosoinsurance-数据库)
     - [Task 2: Perform assessment for migration to Azure SQL Database](#task-2-perform-assessment-for-migration-to-azure-sql-database)
     - [Task 3: Migrate the database schema using the Data Migration Assistant](#task-3-migrate-the-database-schema-using-the-data-migration-assistant)
     - [Task 4: Retrieve connection information for SQL databases](#task-4-retrieve-connection-information-for-sql-databases)
@@ -89,59 +89,58 @@ Microsoft and the trademarks listed at <https://www.microsoft.com/en-us/legal/in
 
 <!-- /TOC -->
 
-# App modernization hands-on lab step-by-step
+# 应用现代化实践实验室分步完成
 
-## Abstract and learning objectives
+## 抽象和学习目标
 
-In this hands-on lab, you implement the steps to modernize a legacy on-premises application, including upgrading and migrating the database to Azure and updating the app to take advantage of serverless and cloud services.
+在此动手操作实验中，您将实现对旧版本地应用程序进行现代化改造的步骤，包括升级数据库并迁移到 Azure，以及更新应用程序以利用无服务器和云服务。
 
-At the end of this hands-on lab, your ability to build solutions for modernizing legacy on-premises applications and infrastructure using cloud services will be improved.
+在此动手实验结束时，您将能够构建解决方案，使用云服务实现传统本地应用程序和基础设施的现代化。
 
-## Overview
+## 概述
 
-Contoso, Ltd. (Contoso) is a new company in an old business. Founded in Auckland, NZ, in 2011, they provide a full range of long-term insurance services to help individuals who are under-insured, filling a void their founders saw in the market. From the beginning, they grew faster than anticipated and have struggled to cope with rapid growth. During their first year alone, they added over 100 new employees to keep up with the demand for their services. To manage policies and associated documentation, they use a custom-developed Windows Forms application, called PolicyConnect. PolicyConnect uses an on-premises SQL Server 2008 R2 database as its data store, along with a file server on its local area network for storing policy documents. That application and its underlying processes for managing policies have become increasingly overloaded.
+Contoso, Ltd. (Contoso)是一家老企业的新公司。他们于2011年成立于新西兰奥克兰，提供全方位的长期保险服务，帮助投保不足的个人，填补其创始人在市场上看到的空白。从一开始，它们的增长速度就比预期的要快，并且一直努力应对快速增长。仅在第一年，他们就增加了100多名新员工，以跟上对服务的需求。若要管理策略和相关文档，他们使用自定义开发的 Windows 窗体应用程序，称为策略连接。策略连接使用本地 SQL Server 2008 R2 数据库作为数据存储，以及其地号网络上的文件服务器来存储策略文档。该应用程序及其管理策略的基础流程已变得越来越超载。
 
-Contoso recently started a new web and mobile projects to allow policyholders, brokers, and employees to access policy information without requiring a VPN connection into the Contoso network. The web project is a new .NET Core 2.2 MVC web application, which accesses the PolicyConnect database using REST APIs. They eventually intend to share the REST APIs across all their applications, including the mobile app and WinForms version of PolicyConnect. They have a prototype of the web application running on-premises and are interested in taking their modernization efforts a step further by hosting the app in the cloud. However, they don't know how to take advantage of all the managed services of the cloud since they have no experience with it. They would like some direction for converting what they have created so far into a more cloud-native application.
+Contoso 最近推出了一个新的 Web 和移动项目，允许投保人、经纪人和员工访问策略信息，而无需将 VPN 连接到 Contoso 网络。Web 项目是一个新的 .NET Core 2.2 MVC Web 应用程序，它使用 REST API 访问策略连接数据库。他们最终打算在所有应用程序中共享 REST API，包括移动应用和 WinForms 版本的策略连接。他们有一个在本地运行的 Web 应用程序的原型，并且有兴趣在云中托管应用程序，进一步实现现代化。但是，他们不知道如何利用云的所有托管服务，因为他们没有云的经验。他们希望有一些方向，将他们到目前为止创建的东西转换为一个更云原生的应用程序。
 
-They have not started the development of a mobile app yet. Contoso is looking for guidance on how to take a .NET developer-friendly approach to implement the PolicyConnect mobile app on Android and iOS.
+他们还没有开始开发移动应用程序。Contoso 正在寻找有关如何采用 .NET 开发人员友好方法在 Android 和 iOS 上实现策略连接移动应用程序的指导。
 
-To prepare for hosting their applications in the cloud, they would like to migrate their SQL Server database to a PaaS SQL service in Azure. Contoso is hoping to take advantage of the advanced security features available in a fully-managed SQL service in the Azure. By migrating to the cloud, they hope to improve their technological capabilities and take advantage of enhancements and services that are enabled by moving to the cloud. The new features they would like to add are automated document forwarding from brokers, secure access for brokers, access to policy information, and reliable policy retrieval for a dispersed workforce. They have been clear that they will continue using the PolicyConnect WinForms application on-premises, but want to update the application to use cloud-based APIs and services. Additionally, they want to store policy documents in cloud storage for retrieval via the web and mobile apps.
+为了准备在云中托管其应用程序，他们希望将 SQL Server 数据库迁移到 Azure 中的 PaaS SQL 服务。Contoso 希望利用 Azure 中完全托管的 SQL 服务中提供的高级安全功能。通过迁移到云，他们希望提高他们的技术能力，并利用迁移到云时启用的增强功能和服务。他们想要添加的新功能是经纪人的自动文档转发、经纪人的安全访问、对策略信息的访问以及分散劳动力的可靠策略检索。他们很清楚，他们将继续在本地使用策略连接 WinForms 应用程序，但希望更新应用程序以使用基于云的 API 和服务。此外，他们希望将策略文档存储在云存储中，以便通过 Web 和移动应用程序进行检索。
 
-## Solution architecture
+## 解决方案架构
 
-Below is a high-level architecture diagram of the solution you implement in this hands-on lab. Please review this carefully, so you understand the whole of the solution as you are working on the various components.
+下面是您在此动手操作实验室中实现的解决方案的高级别体系结构图。请仔细阅读，以便您了解整个解决方案，因为您正在研究各种组件。
 
 ![This solution diagram includes a high-level overview of the architecture implemented within this hands-on lab.](./media/preferred-solution-architecture.png "Preferred Solution diagram")
 
-The solution begins with migrating Contoso's SQL Server 2008 R2 database to Azure SQL Database using the Azure Database Migration Service (DMS). Using the Data Migration Assistant (DMA) assessment, Contoso determined that they can migrate into a fully-managed SQL database service in Azure. The assessment revealed no compatibility issues or unsupported features that would prevent them from using Azure SQL Database. Next, they deploy the web and API apps into Azure App Services. Also, mobile apps, built for Android and iOS using Xamarin, are created to provide remote access to PolicyConnect. The website, hosted in a Web App, provides the user interface for browser-based clients, whereas the Xamarin Forms-based app provides the UI for mobile devices. Both the mobile app and website rely on web services hosted in a Function App, which sits behind API Management. An API App is also deployed to host APIs for the legacy Windows Forms desktop application. Light-weight, serverless APIs are provided by Azure Functions and Azure Functions Proxies to give access to the database and policy documents stored in Blob Storage.
+该解决方案从使用 Azure 数据库迁移服务 （DMS） 将 Contoso 的 SQL Server 2008 R2 数据库迁移到 Azure SQL 数据库开始。使用数据迁移助手 （DMA） 评估，Contoso 确定它们可以迁移到 Azure 中完全托管的 SQL 数据库服务。评估显示没有兼容性问题或不受支持的功能，以防止它们使用 Azure SQL 数据库。接下来，他们将 Web 和 API 应用部署到 Azure 应用服务中。此外，为使用 Xamarin 为 Android 和 iOS 构建的移动应用程序是为了提供对策略连接的远程访问而创建的。托管在 Web App 中的网站为基于浏览器的客户端提供用户界面，而基于 Xamarin 窗体的应用为移动设备提供 UI。移动应用和网站都依赖于托管在函数应用中的 Web 服务，该应用程序位于 API 管理之后。API 应用还部署到旧版 Windows 窗体桌面应用程序的托管 API。轻量级、无服务器 API 由 Azure 函数和 Azure 函数代理提供，以允许访问存储在 Blob 存储中的数据库和策略文档。
 
-Azure API Management is used to create an API Store for development teams and affiliated partners. Sensitive configuration data, like connection strings, are stored in Key Vault and accessed from the APIs or Web App on demand so that these settings never live in their file system. The API App implements the cache aside pattern using Azure Redis Cache. A full-text cognitive search pipeline is used to index policy documents in Blob Storage. Cognitive Services are used to enable search index enrichment using cognitive skills in Azure Search. PowerApps is used to enable authorized business users to build mobile and web create, read, update, delete (CRUD) applications. These apps interact with SQL Database and Azure Storage. Microsoft Flow enables them to orchestrations between services such as Office 365 email and services for sending mobile notifications. These orchestrations can be used independently of PowerApps or invoked by PowerApps to provide additional logic. The solution uses user and application identities maintained in Azure AD.
+Azure API 管理用于为开发团队和附属合作伙伴创建 API 存储。敏感配置数据（如连接字符串）存储在密钥保管库中，并按需从 API 或 Web 应用进行访问，以便这些设置永远不会位于其文件系统中。API 应用使用 Azure Redis 缓存实现缓存一边模式。全文认知搜索管道用于在 Blob 存储中为策略文档编制索引。认知服务用于在 Azure 搜索中使用认知技能启用搜索索引丰富。PowerApps 用于使授权业务用户能够构建移动和 Web 创建、读取、更新、删除 （CRUD） 应用程序。这些应用与 SQL 数据库和 Azure 存储进行交互。Microsoft Flow 使他们能够在 Office 365 电子邮件和服务（如 Office 365）之间进行协调，以发送移动通知。这些业务流程可以独立于 PowerApps 使用，也可以由 PowerApps 调用来提供其他逻辑。该解决方案使用 Azure AD 中维护的用户和应用程序标识。
 
-> **Note:** The solution provided is only one of many possible, viable approaches.
+> **注意:** 所提供的解决办法只是许多可能可行的办法之一
 
-## Requirements
+## 要求
 
-- Microsoft Azure subscription must be pay-as-you-go or MSDN.
-  - Trial subscriptions will not work.
-- A virtual machine configured with Visual Studio Community 2019 or higher (setup in the Before the hands-on lab exercises)
-- **IMPORTANT**: To complete this lab, you must have sufficient rights within your Azure AD tenant to:
-  - Create an Azure Active Directory application and service principal
-  - Assign roles on your subscription
-  - Register resource providers
+- Microsoft Azure 订阅必须是即用即付订阅或 MSDN。
+  - 试用订阅将不起作用。
+- 配置了 Visual Studio 社区 2019 或更高版本（在动手实验练习之前设置）
+- **IMPORTANT**: 要完成本实验，Azure AD 租户中必须具有足够的权限，以：
+  - 创建 Azure 活动目录应用程序和服务主体
+  - 在订阅上分配角色
+  - 注册资源提供程序
 
-## Exercise 1: Migrate the on-premises database to Azure SQL Database
+## 练习 1: 将本地数据库迁移到 Azure SQL 数据库
 
-Duration: 45 minutes
+时间: 45 分钟
 
-In this exercise, you use the Microsoft Data Migration Assistant (DMA) to assess the `ContosoInsurance` database for a migration to Azure SQL Database. The assessment generates a report detailing any feature parity and compatibility issues between the on-premises database and Azure SQL Database.
+本练习中，使用 Microsoft 数据迁移助手 （DMA） 来评估迁移到 Azure SQL 数据库的数据库`ContosoInsurance`。评估生成一个报告，详细说明本地数据库和 Azure SQL 数据库之间的任何功能奇偶校验和兼容性问题。 
 
-> DMA helps you upgrade to a modern data platform by detecting compatibility issues that can impact database functionality on your new version of SQL Server or Azure SQL Database. DMA recommends performance and reliability improvements for your target environment and allows you to move your schema, data, and uncontained objects from your source server to your target server. To learn more, read the [Data Migration Assistant documentation](https://docs.microsoft.com/sql/dma/dma-overview?view=azuresqldb-mi-current).
+> DMA 通过检测可能会影响新版本 SQL Server 或 Azure SQL 数据库上的数据库功能的兼容性问题，帮助您升级到现代数据平台。DMA 建议为目标环境改进性能和可靠性，并允许您将架构、数据和未包含对象从源服务器移动到目标服务器。要了解更多信息, 请阅读 [Data Migration Assistant documentation](https://docs.microsoft.com/sql/dma/dma-overview?view=azuresqldb-mi-current).
 
-### Task 1: Configure the ContosoInsurance database on the SqlServer2008 VM
+### 任务 1：在 SqlServer2008 VM 上配置 ContosoInsurance 数据库
 
-Before you begin the assessment, you need to configure the `ContosoInsurance` database on your SQL Server 2008 R2 instance. In this task, you execute a SQL script against the `ContosoInsurance` database on the SQL Server 2008 R2 instance.
-
-> **Note**: There is a known issue with screen resolution when using an RDP connection to Windows Server 2008 R2, which may affect some users. This issue presents itself as very small, hard to read text on the screen. The workaround for this is to use a second monitor for the RDP display, which should allow you to scale up the resolution to make the text larger.
+在开始评估之前，您需要在 SQL Server 2008 R2 实例上配置数据库`ContosoInsurance`。在此任务中，针对 SQL Server 2008 R2 实例上的`ContosoInsurance` 数据库执行 SQL 脚本。 
+> **Note**: 注意：使用到 Windows Server 2008 R2 的 RDP 连接时，屏幕分辨率存在已知问题，可能会影响某些用户。此问题呈现为非常小，难以在屏幕上阅读文本。解决方法是为 RDP 显示使用第二个监视器，这应该允许您扩展分辨率以使文本变大
 
 1. In the [Azure portal](https://portal.azure.com), navigate to your **SqlServer2008** VM by selecting **Resource groups** from Azure services list, selecting the **hands-on-lab-SUFFIX** resource group, and selecting the **SqlServer2008** VM from the list of resources.
 

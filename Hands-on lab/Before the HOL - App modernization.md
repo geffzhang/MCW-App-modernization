@@ -1,11 +1,12 @@
 ![Microsoft Cloud Workshops](https://github.com/Microsoft/MCW-Template-Cloud-Workshop/raw/master/Media/ms-cloud-workshop.png "Microsoft Cloud Workshops")
 
 <div class="MCWHeader1">
-App modernization
+应用现代化
+
 </div>
 
 <div class="MCWHeader2">
-Before the hands-on lab setup guide
+动手实验之前的设置指南
 </div>
 
 <div class="MCWHeader3">
@@ -26,37 +27,37 @@ Microsoft and the trademarks listed at <https://www.microsoft.com/en-us/legal/in
 
 <!-- TOC -->
 
-- [App modernization before the hands-on lab setup guide](#app-modernization-before-the-hands-on-lab-setup-guide)
+- [应用现代化动手实验之前的设置指南](#应用现代化动手实验之前的设置指南)
   - [Requirements](#requirements)
-  - [Before the hands-on lab](#before-the-hands-on-lab)
-    - [Task 1: Provision a resource group](#task-1-provision-a-resource-group)
-    - [Task 2: Register required resource providers](#task-2-register-required-resource-providers)
-    - [Task 3: Run ARM template to provision lab resources](#task-3-run-arm-template-to-provision-lab-resources)
+  - [动手实验前](#动手实验前)
+    - [任务 1: 预配资源组](#任务-1-预配资源组)
+    - [任务 2：注册所需的资源提供程序](#任务-2注册所需的资源提供程序)
+    - [任务 3：运行 ARM 模板以预配实验室资源](#任务-3运行-arm-模板以预配实验室资源)
 
 <!-- /TOC -->
 
-# App modernization before the hands-on lab setup guide
+# 应用现代化动手实验之前的设置指南
 
 ## Requirements
 
-- Microsoft Azure subscription must be pay-as-you-go or MSDN.
-  - Trial subscriptions will _not_ work.
-- **IMPORTANT**: To complete this lab, you must have sufficient rights within your Azure AD tenant to:
-  - Create an Azure Active Directory application and service principal
-  - Assign roles on your subscription
-  - Register resource providers
+- Microsoft Azure 订阅必须是即用即付订阅或 MSDN
+  - 用订阅将不起作用
+- **IMPORTANT**: 重要提示：要完成本实验，Azure AD 租户中必须具有足够的权限，以：
+  - 创建 Azure 活动目录应用程序和服务主体
+  - 在订阅上分配角色
+  - 注册资源提供程序
 
-## Before the hands-on lab
+## 动手实验前
 
-Duration: 45 minutes
+Duration: 45 分钟
 
-In this exercise, you set up an environment for use in the rest of the hands-on lab. You should follow all steps provided _before_ attending the Hands-on lab.
+在本练习中，您将设置一个环境，用于实践实验的其余部分。在参加动手实验之前，您应该按照提供的所有步骤操作。
 
-> **IMPORTANT**: Many Azure resources require globally unique names. Throughout these steps the word "SUFFIX" appears as part of resource names. You should replace this with your Microsoft alias, initials, or another value to ensure resources are uniquely named.
+> **IMPORTANT**: 许多 Azure 资源需要全局唯一名称。在这些步骤中，"SUFFIX"一词作为资源名称的一部分出现。应将其替换为 Microsoft 别名、首字母缩写或其他值，以确保资源唯一命名。
 
-### Task 1: Provision a resource group
+### 任务 1: 预配资源组
 
-In this task, you create an Azure resource group to serve as a container for the resources used throughout this lab.
+在此任务中，创建 Azure 资源组作为整个实验中使用的资源的容器。
 
 1. In the [Azure portal](https://portal.azure.com), select **Resource groups** from the Azure services list.
 
@@ -78,9 +79,10 @@ In this task, you create an Azure resource group to serve as a container for the
 
 5. On the **Review + create** tab, ensure the Validation passed message is displayed and then select **Create**.
 
-### Task 2: Register required resource providers
+### 任务 2：注册所需的资源提供程序
 
-In this task, you register the `Microsoft.DataMigration` and `Microsoft.Search` resource providers within your Azure subscription. These resource providers allow Azure Cognitive Search and the Azure Database Migration Service to be provisioned within your subscription.
+ 
+在此任务中，在 Azure 订阅中注册`Microsoft.DataMigration` 和 `Microsoft.Search` 资源提供程序。这些资源提供程序允许在订阅中预配 Azure 认知搜索和 Azure 数据库迁移服务。
 
 1. In the [Azure portal](https://portal.azure.com), select **Subscriptions** from the Azure services list.
 
@@ -100,9 +102,9 @@ In this task, you register the `Microsoft.DataMigration` and `Microsoft.Search` 
 
    > **Note**: You may need to select Refresh to see the updated status.
 
-### Task 3: Run ARM template to provision lab resources
+### 任务 3：运行 ARM 模板以预配实验室资源
 
-In this task, you run an Azure Resource Manager (ARM) template to deploy and configure the resources used throughout this hands-on lab. The resources created by the ARM template include:
+在此任务中，运行 Azure 资源管理器 （ARM） 模板来部署和配置在整个动手操作实验室中使用的资源。ARM 模板创建的资源包括：
 
 - Azure Blob Storage account
 - A lab virtual machine (VM) with Visual Studio 2019 Community edition and SQL Server Management Studio (SSMS) installed.
@@ -123,7 +125,7 @@ In this task, you run an Azure Resource Manager (ARM) template to deploy and con
 
 1. To run the ARM template deployment, select the **Deploy to Azure** button below, which opens a custom deployment screen in the Azure portal.
 
-<a href ="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fgeffzhang%2FMCW-App-modernization%2Fmaster%2FHands-on%20lab%2Flab-files%2FARM-template%2Fazure-deploy.json" target="_blank" title="Deploy to Azure">
+<a href ="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmicrosoft%2FMCW-App-modernization%2Fmaster%2FHands-on%20lab%2Flab-files%2FARM-template%2Fazure-deploy.json" target="_blank" title="Deploy to Azure">
 <img src="http://azuredeploy.net/deploybutton.png"/>
 </a>
 

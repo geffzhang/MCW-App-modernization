@@ -1,11 +1,11 @@
 ![Microsoft Cloud Workshops](https://github.com/Microsoft/MCW-Template-Cloud-Workshop/raw/master/Media/ms-cloud-workshop.png "Microsoft Cloud Workshops")
 
 <div class="MCWHeader1">
-App modernization
+应用现代化
 </div>
 
 <div class="MCWHeader2">
-Whiteboard design session student guide
+白板设计会议 学生指南
 </div>
 
 <div class="MCWHeader3">
@@ -27,214 +27,216 @@ Microsoft and the trademarks listed at <https://www.microsoft.com/legal/intellec
 <!-- TOC -->
 
 - [App modernization whiteboard design session student guide](#app-modernization-whiteboard-design-session-student-guide)
-  - [Abstract and learning objectives](#abstract-and-learning-objectives)
-  - [Step 1: Review the customer case study](#step-1-review-the-customer-case-study)
-    - [Customer situation](#customer-situation)
-    - [Customer needs](#customer-needs)
-    - [Customer objections](#customer-objections)
-    - [Infographic for common scenarios](#infographic-for-common-scenarios)
-  - [Step 2: Design a proof of concept solution](#step-2-design-a-proof-of-concept-solution)
-  - [Step 3: Present the solution](#step-3-present-the-solution)
-  - [Wrap-up](#wrap-up)
+  - [摘要和学习目标](#摘要和学习目标)
+  - [第一步: Review the customer case study](#第一步-review-the-customer-case-study)
+    - [客户情况](#客户情况)
+    - [客户需求](#客户需求)
+    - [客户异议](#客户异议)
+    - [常见场景的信息图](#常见场景的信息图)
+  - [步骤 2: 设计一个概念验证解决方案](#步骤-2-设计一个概念验证解决方案)
+  - [第三步: 提出解决方案](#第三步-提出解决方案)
+  - [总结](#总结)
   - [Additional references](#additional-references)
 
 <!-- /TOC -->
 
 # App modernization whiteboard design session student guide
 
-## Abstract and learning objectives
+## 摘要和学习目标
 
-In this whiteboard design session, you work with a group to design a solution for modernizing legacy on-premises applications and infrastructure by leveraging cloud services. As part of the modernization effort, application enhancements are added using a mix of web and mobile services, all secured using Azure Active Directory.
+在此白板设计会议中，您将与一个小组一起设计一种解决方案，以通过利用云服务来现代化旧式本地应用程序和基础架构。作为现代化工作的一部分，使用Web和移动服务的组合添加了应用程序增强功能，所有这些功能都使用Azure Active Directory保护。
 
-At the end of this whiteboard design session, your ability to design a modernization plan for organizations looking to move services from on-premises to the cloud will be improved.
+在本白板设计课程的最后，您将提高为希望将服务从本地迁移到云的组织设计现代化计划的能力。
 
-## Step 1: Review the customer case study
+ 
+## 第一步: Review the customer case study
 
 **Outcome**
 
-Analyze your customer's needs.
+分析客户需求.
 
-Timeframe: 15 minutes
+时限: 15 分钟
 
-Directions: With all participants in the session, the facilitator/SME presents an overview of the customer case study along with technical tips.
+指导：与所有参与者一起，主持人/ SME提供客户案例研究的概述以及技术提示.
 
-1. Meet your table participants and trainer.
+1. 认识团队成员核培训师.
 
-2. Read all of the directions for steps 1-3 in the student guide.
+2. 阅读学生指南中步骤1-3的所有说明
 
-3. As a table team, review the following customer case study.
+3. 作为一个团队成员,  查看下列客户案例.
 
-### Customer situation
+### 客户情况
 
-Contoso, Ltd. (Contoso) is a new company in an old business. The company was founded in Auckland, New Zealand, in 2011, by senior life insurance executives. The ambitious new company provides a full range of long-term insurance services to help underinsured people.
+Contoso，Ltd.（Contoso）是一家从事旧业务的新公司。该公司于2011年由高级人寿保险公司高管在新西兰奥克兰成立。这家雄心勃勃的新公司提供全方位的长期保险服务，以帮助未保险人群。
 
-Almost from the start, the company grew far faster than anticipated. An avalanche of business meant that the initial processes created to manage policy documentation became overloaded. Employees struggled to cope, even as the headcount rose from five to 110 during the first two years. "By the beginning of 2013, we had over 750,000 pages of partly hand-written policy documents filed in our offices," says Charlene Mathis, General Manager, Contoso. "Customer-facing employees could not retrieve policies quickly, and we faced a service bottleneck. Slow response times impacted customer service, and the ability to locate documents quickly cost us time and money."
+几乎从一开始，该公司的增长速度就远远超出了预期。大量的业务意味着为管理策略文档而创建的初始流程变得超负荷。即使头两年员工人数从5人增加到110人，员工们仍在努力应对。Contoso总经理Charlene Mathis说：“到2013年初，我们已在办公室归档了超过750,000页的部分手写政策文件。” “面对客户的员工无法快速检索策略，我们面临服务瓶颈。响应速度慢影响了客户服务，而快速找到文档的能力使我们浪费了时间和金钱。”
 
-To overcome these challenges, the founders launched a project to build an application that could digitize and file all existing policy documents and file new policies as brokers submit them. They also had requirements to allow automated document forwarding from brokers, secure access for brokers, access to policy information, and ready policy retrieval for a dispersed workforce. The result of this project was a custom Windows Forms application was named PolicyConnect. Contoso employees use PolicyConnect to enter essential policy metadata, including insured amount, beneficiary information, policy type, and any deductible and out-of-pocket requirements, and associate that with the digitized policy documents.
+为了克服这些挑战，创建者启动了一个项目，以构建一个应用程序，该应用程序可以数字化并归档所有现有的策略文件，并在经纪人提交它们时归档新的策略。他们还要求允许从经纪人自动转发文档，对经纪人的安全访问，对策略信息的访问以及为分散工作人员准备的策略检索。该项目的结果是一个名为PolicyConnect的自定义Windows Form应用程序。Contoso员工使用PolicyConnect输入必要的保单元数据，包括保险金额，受益人信息，保单类型以及任何自付额和自付费用要求，并将其与数字化保单文件相关联。
 
-Contoso built PolicyConnect using a traditional n-tier application architecture. The data access layer houses methods for interacting with the underlying SQL Server 2008 R2 database. A business logic layer handles things like user login and policy rules. The presentation layer provides the user interface (UI). The design follows a service-oriented architecture, with a series of Windows Communication Foundation (WCF) services representing the services and capabilities required for each tier. The application stores associated policy documents as PDF files on a file server accessible via an SMB network share on their local area network. PolicyConnect accesses these files using a canonical path (customer last name and policy number). A SQL Server 2008 R2 database houses the policy metadata for each policy document, which is currently entered manually into PolicyConnect by Contoso staff members. Contoso provided the following diagram about its current topology:
+Contoso使用传统的n层应用程序体系结构构建了PolicyConnect。数据访问层包含用于与基础SQL Server 2008 R2数据库进行交互的方法。业务逻辑层处理诸如用户登录和策略规则之类的事情。表示层提供用户界面（UI）。该设计遵循面向服务的体系结构，带有一系列Windows Communication Foundation（WCF）服务，这些服务代表了每个层所需的服务和功能。该应用程序将关联的策略文档作为PDF文件存储在可通过其局域网上的SMB网络共享访问的文件服务器上。PolicyConnect使用规范路径（客户的姓氏和策略编号）访问这些文件。SQL Server 2008 R2数据库包含每个策略文档的策略元数据，当前由Contoso工作人员手动输入到PolicyConnect中。Contoso提供了有关其当前拓扑的下图：
 
 ![The Contoso topology diagram has a local area network comprised of the on-premises user, Application servers for authentication and authorization, policy management and data access service, database servers, and file servers. A VPN server connects them to the Remote User via PolicyConnect.](media/image2.png "The Contoso topology diagram has a local area network comprised of the on-premise user, Application servers for authentication and authorization, policy management and data access service, database servers, and file servers. A VPN server connects them to the Remote User via PolicyConnect.")
 
-The application currently supports access via a virtual private network (VPN) connection for users outside the Contoso local area network. As such, Contoso brokers are unable to view data or documents unless granted VPN access. This requirement has proven to be time-consuming and frustrating for brokers.
+该应用程序当前支持Contoso局域网以外的用户通过虚拟专用网络（VPN）连接进行访问。因此，除非被授予VPN访问权限，否则Contoso代理无法查看数据或文档。事实证明，此要求对于经纪人而言既耗时又令人沮丧。
 
-Contoso employees rely on email as a workflow engine relative to the document management tasks. One group is responsible for scanning and cataloging while another group is responsible for assigning the policies to the specified broker. Manually written emails are sent to brokers when their customers' policy documents have been scanned and indexed. They are using Office 365. The company executives have frequent challenges in gauging productivity and throughput, given the manual workflow. They feel that they are blocked in quickly getting to the insights they need because each new question seems to need more custom development.
+Contoso员工将电子邮件作为与文档管理任务相关的工作流引擎。一个小组负责扫描和编目，而另一小组负责将策略分配给指定的代理。在扫描了客户的策略文档并将其编入索引之后，会将手动编写的电子邮件发送给经纪人。他们正在使用Office365。考虑到手动工作流程，公司高管在衡量生产率和吞吐量方面经常遇到挑战。他们感到自己无法快速获取所需的见解，因为每个新问题似乎都需要更多的自定义开发。
 
-Contoso recently started investigating ways to leverage the cloud to modernize its policyholder system and begin addressing several issues with the existing PolicyConnect system. However, they lack any tangible experience with the cloud and are looking for guidance on how they can best modernize and take advantage of cloud technologies.
+Contoso最近开始研究利用云来更新其保单持有人系统的方法，并开始解决现有PolicyConnect系统的若干问题。但是，他们缺乏任何有关云的实际经验，并且正在寻找有关如何最好地现代化和利用云技术的指南。
 
-Contoso stated that their highest priority is addressing the end-of-support for SQL Server 2008 R2. They would like to migrate their SQL Server 2008 R2 database to a fully-managed SQL database in Azure. Once the database is in the cloud, they want to take advantage of some of the primary benefits that enabled by using a platform-as-a-service (PaaS) database service. According to Contoso, it does not use any of the "fancy" SQL Server features and hopes the migration can be a slam dunk. They would also like to better understand the performance and security features they might be able to leverage once their database is running in Azure.
+Contoso表示，他们的最高优先级是解决对SQL Server 2008 R2的支持终止。他们希望将其SQL Server 2008 R2数据库迁移到Azure中完全托管的SQL数据库。一旦数据库进入云中，他们便希望利用通过平台即服务（PaaS）数据库服务实现的一些主要优势。根据Contoso的说法，它不使用任何“高级” SQL Server功能，并希望迁移可以是平滑的。他们还希望更好地了解他们的数据库在Azure中运行后可能会利用的性能和安全性功能。
 
-Another top priority is making the system available to employees and brokers via web and mobile applications and eliminating the requirement for establishing a VPN connection. They also want to store policies in cloud storage for retrieval via these web and mobile applications. Both the web and mobile applications should permit policyholders to log in, review their information, and retrieve a PDF copy of their policy. An application programming interface (API), shared by both application, provides access to data and policy documents. The goal is to deploy the web application, database, and API to the cloud. Also, they want to learn more about lightweight, serverless architectures that may help them implement some API functionality more rapidly. They mentioned a possible use case of providing access to policy documents in storage.
+另一个首要任务是使该系统可以通过Web和移动应用程序供员工和经纪人使用，并且消除了建立VPN连接的需求。他们还希望将策略存储在云存储中，以通过这些Web和移动应用程序进行检索。Web和移动应用程序均应允许保单持有人登录，查看其信息并检索其保单的PDF副本。两个应用程序共享一个应用程序编程接口（API），可以访问数据和策略文档。目标是将Web应用程序，数据库和API部署到云中。此外，他们希望了解有关轻量级，无服务器架构的更多信息，这些架构可以帮助他们更快地实现某些API功能。他们提到了一个可能的用例，即提供对存储中策略文件的访问。
 
-As part of the application modernization process, Contoso would also like to learn more about how Azure Cognitive Search might be able to improve their ability to find policy documents. PolicyConnect stores all policy documents as opaque PDF files on a network file share, and key metadata is entered into the PolicyConnect application manually. Searching is limited to file names, and the limited metadata entered manually. Presently, they cannot search for information contained within the policy documents. They have found that metadata entered manually has not provided the best results for being able to search for and retrieve policy information quickly.
+作为应用程序现代化过程的一部分，Contoso还希望了解更多有关Azure认知搜索可能如何提高其查找策略文档的能力的信息。PolicyConnect将所有策略文档以不透明PDF文件的形式存储在网络文件共享上，并且关键元数据会手动输入到PolicyConnect应用程序中。搜索仅限于文件名，并且手动输入了有限的元数据。目前，他们无法搜索政策文件中包含的信息。他们发现手动输入的元数据无法提供最佳结果，因为它们无法快速搜索和检索策略信息。
 
-Given the potential for these new applications to increase the load on its database, they want to employ best practices for mitigating the impact of repeated querying of the database. Along these lines, they would like to implement a scoreboard of sorts that tracks the most active users in 24 hours, as well as the approximate the number of operations that user performed within the system in perpetuity. Both metrics are attractive to management to be able to get a cursory understanding of who the heaviest users are and how much they use the system.
+考虑到这些新应用程序可能会增加其数据库负载，他们希望采用最佳实践来减轻重复查询数据库的影响。沿着这些思路，他们希望实施一种记分板，以跟踪24小时内最活跃的用户，以及用户永久性地在系统内执行的大约操作次数。这两个指标都对管理很有吸引力，因为它可以粗略地了解谁是最重的用户以及他们使用系统的数量。
 
-Contoso has multiple development teams that focus on separate business units (e.g., underwriting, sales, compliance, and brokers). IT leadership is excited to move as much business logic to APIs as possible. However, they are concerned that, over time, there may be duplication of effort as each team develops new or revises existing APIs. They would also like to open up a subset of APIs to a network of affiliated partners. They are interested in strategies to help them provide discoverability, security, and lifecycle management of an evolving API ecosystem. They would like advanced analytics and data visualizations of API usage to help manage the API inventory.
+Contoso拥有多个开发团队，专注于不同的业务部门（例如，承销，销售，合规性和经纪人）。IT领导层很高兴将尽可能多的业务逻辑转移到API。但是，他们担心随着时间的推移，随着每个团队开发新的API或修改现有的API，可能会重复工作。他们还希望向关联合作伙伴网络开放一部分API。他们对有助于他们提供不断发展的API生态系统的可发现性，安全性和生命周期管理的策略感兴趣。他们希望对API使用情况进行高级分析和数据可视化，以帮助管理API库存。
 
-According to Charlene Mathis, "Mobile applications represent a way to empower our brokers and our employees by bringing our software to the palm of their hands. Our primary investment is in making the best mobile app version of PolicyConnect possible. But, we also want to provide a streamlined way for our internal departments to quickly build custom apps to automate time-saving micro-processes without having to involve our developers." One micro-process she mentioned is enabling employees to set rules. For example, when a VIP customer sends an email, they get an application notification on their mobile device. Another scenario would be enabling employees to set workflows, like automatically saving attachments in emails with policy documents to the proper location in cloud storage.
+根据Charlene Mathis的说法，“移动应用程序代表了将经纪人和员工带到他们手中的能力，从而使我们的经纪人和员工拥有能力。我们的主要投资是使PolicyConnect成为最佳移动应用程序版本。但是，我们也希望为我们的内部部门提供了一种简化的方法，可以快速构建自定义应用程序，以自动化省时的微流程，而无需我们的开发人员参与。” 她提到的一个微流程是使员工能够制定规则。例如，当VIP客户发送电子邮件时，他们会在其移动设备上收到应用程序通知。另一种情况是使员工能够设置工作流程，例如将带有策略文档的电子邮件中的附件自动保存到云存储中的适当位置。
 
-With this new system, Contoso would like to improve its security practices. In the previous version, each application tier maintained its configuration settings locally. For example, the data access layer would store the connection strings for SQL Server locally on disk. They would like to take an approach of externalizing secrets such as these from the web apps and APIs and storing them in an encrypted location accessible only to authorized services.
+通过此新系统，Contoso希望改善其安全实践。在以前的版本中，每个应用程序层都在本地维护其配置设置。例如，数据访问层将SQL Server的连接字符串本地存储在磁盘上。他们希望采用一种方法，将来自Web应用程序和API的秘密（例如，这些秘密）外部化，并将其存储在仅允许授权服务访问的加密位置。
 
-"Our founders want a document system that can be quickly adapted to meet changing business needs while keeping costs low," says Mathis. "They do not want to invest in on-site infrastructure if the resources and IT support involved ultimately slow our growth. They have a clear IT strategy: 'All systems to the cloud.'"
+Mathis说：“我们的创始人想要一个能够快速适应不断变化的业务需求同时又保持较低成本的文档系统。” “如果涉及的资源和IT支持最终使我们的增长减速，他们就不想在现场基础设施上进行投资。他们有一个明确的IT战略：'所有系统到云。'
 
-### Customer needs
 
-1. Contoso wants to modernize the architecture of its solution while keeping it .NET-based.
+### 客户需求
 
-2. They would like a .NET developer-friendly way to implement its PolicyConnect mobile app for Android and iOS.
+1. Contoso希望在保持基于.NET的同时对其解决方案的体系结构进行现代化。
 
-3. They are looking for ways to empower their business users to create internal mobile apps that help them streamline their processes. They would like to add this capability without the time and resource investment that goes into implementing full-scale mobile apps.
+2. 他们希望以.NET开发人员友好的方式来实现适用于Android和iOS的PolicyConnect移动应用程序.
 
-4. They want to improve the management of application secrets.
+3. 他们正在寻找方法来授权其业务用户创建内部移动应用程序，以帮助他们简化流程。他们希望添加此功能，而无需花费时间和资源来投入实施大型移动应用程序。.
 
-5. They would like to make policy documents full-text searchable, with a minimal amount of implementation effort.
+4. 他们希望改善应用程序密钥的管理 .
 
-6. They are interested in leveraging serverless technologies to speed up API development. They have requested a proof-of-concept (POC) that can be used to retrieve policy documents from storage.
+5. 他们希望以最少的实施工作量就全文搜索政策文件.
 
-7. They want to migrate their SQL Server 2008 R2 database to a fully-managed SQL database in Azure. Once in Azure, they would like to take advantage of some of the primary benefits enabled by using a PaaS database service.
+6. 他们对利用无服务器技术来加速API开发感兴趣。他们要求提供概念证明（POC），可用于从存储中检索策略文档。
 
-8. Contoso wants to understand how to deploy better caching in its solution, both to lessen the load on the database and for providing scalable scoreboards.
+7. 他们希望将其SQL Server 2008 R2数据库迁移到Azure中完全托管的SQL数据库。进入Azure后，他们希望利用通过使用PaaS数据库服务启用的一些主要好处。
 
-### Customer objections
+8. Contoso希望了解如何在其解决方案中部署更好的缓存，以减轻数据库的负担并提供可扩展的记分板。 
 
-1. We have seen services like IFTTT (If This, Then That) that let business users automate processes. Does Microsoft Azure offer something similar?
+### 客户异议
 
-2. Our developers have heard of Logic Apps. Will Microsoft Flow replace these?
+1. 我们已经看到像IFTTT这样的服务（如果做到了，那么就做到了），使业务用户可以自动化流程。Microsoft Azure是否提供类似的功能？
 
-3. Is there a way to securely store application secrets in the cloud?
+2. 我们的开发人员听说过Logic Apps。Microsoft Flow会取代这些吗？
 
-4. We noticed that Azure SQL Database does not support all the features available in SQL Server. We are not using these features currently, but are curious to know what the options are for these in Azure? Specifically, we were thinking about Linked Servers, Database Mail, SQL Server Agent Jobs, and Service Broker.
+3. 有没有办法将应用程序秘密安全地存储在云中？
 
-5. Moving everything to APIs sounds terrific, but how can we stay on top of our API inventory and manage discoverability, security, lifecycle, and monitoring into the future? Is there something we could use to develop a proof of concept quickly?
+4. 我们注意到，Azure SQL数据库不支持SQL Server中的所有可用功能。我们目前不使用这些功能，但想知道Azure中这些功能的选项是什么？具体来说，我们正在考虑Linked Servers， Database Mail，SQL Server  Agent Jobs和Service Broker。 
 
-6. We have been using .NET Framework for years, and now in Visual Studio web have options for .NET Framework, .NET Standard, and .NET Core. As we look at creating our new web and API applications, how do we choose the correct framework?
+5. 将所有内容转移到API听起来很棒，但是我们如何才能掌握API库存清单的顶部并管理可发现性，安全性，生命周期以及对未来的监视？有什么可以用来快速开发概念证明的东西吗？ 
 
-### Infographic for common scenarios
+6. 我们已经使用.NET Framework多年了，现在在Visual Studio Web中有.NET Framework，.NET Standard和.NET Core的选项。当我们着眼于创建新的Web和API应用程序时，我们如何选择正确的框架？
+
+###  常见场景的信息图
 
 ![The Common scenario for an E-Commerce Website diagram has an Enterprise and an End User connected via an internet tier, a services tier, and a data tier.](media/image3.png "Common scenario for an E-Commerce Website diagram")
 
-## Step 2: Design a proof of concept solution
+## 步骤 2: 设计一个概念验证解决方案
 
-**Outcome**
+**目标**
 
-Design a solution and prepare to present the solution to the target customer audience in a 15-minute chalk-talk format.
+设计一个解决方案，并准备以15分钟的对话形式将解决方案介绍给目标客户.
 
-Timeframe: 60 minutes
+时间范围: 60 分钟
 
-**Business needs**
+**业务要求**
 
-Directions: With all participants at your table, answer the following questions and list the answers on a flip chart:
+方向: 让所有与会者都在您的餐桌旁，回答以下问题，并在活动挂图上列出答案：
 
-1. Who should you present this solution to? Who is your target customer audience? Who are the decision makers?
+1. 您应该向谁提出这个解决方案？谁是您的目标客户群？谁是决策者？
 
-2. What customer business needs do you need to address with your solution?
+2. 您需要使用解决方案解决哪些客户业务需求？
 
-**Design**
+**设计**
 
-Directions: With all participants at your table, respond to the following questions on a flip chart:
+方向：让所有与会者都在您的圆桌旁，在活动挂图上回答以下问题：
 
-_High-level architecture_
+_高层架构_
 
-1. Without getting into the details (the following sections will address the particular details), diagram your initial vision for handling the top-level requirements for the mobile and web applications, data management, search, and extensibility.
+1. 在不涉及细节的情况下（以下几节将讨论特定的细节），您将初步了解如何处理移动和Web应用程序，数据管理，搜索和可扩展性的顶级需求。
 
-_Mobile and web applications_
+_移动和网络应用_
 
-1. How should Contoso implement the PolicyConnect mobile app?
+1. Contoso应该如何实施PolicyConnect移动应用程序？
 
-2. What Azure service would host the website?
+2. 哪些Azure服务将托管网站？
 
-3. What Azure service would host the services supporting the mobile app backend? Would you suggest a Mobile App or an API App? Why?
+3. 哪些Azure服务将托管支持移动应用程序后端的服务？您会建议使用移动应用还是API应用？为什么？
 
-4. What Azure service would provide a lightweight, serverless API solution for retrieving policy documents from Azure blob storage?
+4. 哪些Azure服务将提供轻量级，无服务器的API解决方案以从Azure blob存储中检索策略文档？
 
-5. How would you secure sensitive information used by the website and APIs? Be specific on the Azure Service used, how you would configure it, and how the web or API logic would retrieve its secrets at run time.
+5. 您将如何保护网站和API使用的敏感信息？具体说明所使用的Azure服务，如何配置它以及Web或API逻辑如何在运行时检索其机密。
 
-6. What recommendations can you make to help Contoso manage its API inventory as it grows in the future? Are there services in Azure that can provide a proof of concept _API Store_ experience now and serve as path to development in the future?
+6. 您可以提出什么建议来帮助Contoso管理其API清单（随着将来的增长）？Azure中是否有现在可以提供概念证明API商店体验并可以作为将来开发之路的服务？
 
-_Data management_
+_数据管理_
 
-1. What tools would you recommend Contoso use to migrate its database? How would you use these? Be specific.
+1. 您会推荐Contoso使用哪些工具来迁移其数据库？您将如何使用这些？请明确点。
 
-2. What patterns and services would you use to reduce load on the database? Implement the scoreboards? Be specific on the Azure services used and how the application would take advantage of them.
+2. 您将使用什么模式和服务来减少数据库的负载？实施计分板？具体说明所使用的Azure服务以及应用程序将如何利用它们。
 
-3. Given their requirements, how would you enable full-text search on the stored policy documents?
+3. 根据他们的要求，您将如何对存储的策略文档启用全文搜索？
 
-_Search_
+_搜索_
 
-1. How can Azure Cognitive Search be used to extract more information from Contoso's policy documents?
+1. 如何使用Azure认知搜索从Contoso的策略文档中提取更多信息？
 
-2. Can Contoso's developers extend the capabilities of Azure Cognitive Search to include in-house developed cognitive skills to enrich their search index?
+2. Contoso的开发人员是否可以扩展Azure认知搜索的功能，以包括内部开发的认知技能来丰富其搜索索引？
 
-_Extensibility_
+_可扩展性_
 
-1. How would you enable its business users to create their own internal mobile apps that help them streamline their processes without the time and resource investment that goes into implementing full-scale mobile apps?
+1. 您将如何使其业务用户创建自己的内部移动应用程序，以帮助他们简化流程，而无需花费时间和资源来投入实施大型移动应用程序？
 
-2. Given your answer to the previous question, how would a Contoso business user implement the scenario where a high-priority email is sent to his Office 365 email and in response an application notification appears on his device?
+2. 给定您对上一个问题的答案，Contoso业务用户将如何实现将高优先级电子邮件发送到其Office 365电子邮件并在其设备上显示应用程序通知的情况？
 
-**Prepare**
+**准备**
 
-Directions: With all participants at your table:
+方向: 让所有与会者都在您的圆桌旁:
 
-1. Identify any customer needs that are not addressed with the proposed solution.
+1. 确定建议的解决方案未满足的任何客户需求.
 
-2. Identify the benefits of your solution.
+2. 确定解决方案的好处.
 
-3. Determine how you will respond to the customer's objections.
+3. 确定您将如何回应客户的疑义.
 
-Prepare a 15-minute chalk-talk style presentation to the customer.
+准备给客户15分钟的口头演讲风格的演示文稿.
 
-## Step 3: Present the solution
+## 第三步: 提出解决方案
 
-**Outcome**
+**目标**
 
-Present a solution to the target customer audience in a 15-minute chalk-talk format.
+以15分钟的演讲形式向目标客户群体介绍解决方案.
 
-Timeframe: 30 minutes
+时间范围: 30 分钟
 
-**Presentation**
+**介绍**
 
-Directions:
+目标:
 
-1. Pair with another table.
+1. 和另外一张桌子组队.
 
-2. One table is the Microsoft team and the other table is the customer.
+2. 一张桌子代表 Microsoft 团队和另外一张代表客户.
 
-3. The Microsoft team presents their proposed solution to the customer.
+3. Microsoft团队向客户介绍了他们提出的解决方案
 
-4. The customer makes one of the objections from the list of objections.
+4. 客户从异议列表中提出一个异议.
 
-5. The Microsoft team responds to the objection.
+5. Microsoft团队对此异议作出了回应。
 
-6. The customer team gives feedback to the Microsoft team.
+6. 客户团队向Microsoft团队提供反馈。
 
-7. Tables switch roles and repeat Steps 2-6.
+7. 切换角色并重复步骤 2-6.
 
-## Wrap-up
+## 总结
 
-Timeframe: 15 minutes
+时间范围: 15 分钟
 
-Directions: Tables reconvene with the larger group to hear the facilitator/SME share the preferred solution for the case study.
+Directions: 与较大的团体重新开会，以听取主持人/中小型企业分享研究案例的首选解决方案。.
 
 ## Additional references
 

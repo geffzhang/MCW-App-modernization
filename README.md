@@ -1,42 +1,41 @@
-## Effective December 1, 2020 this workshop will be archived.  Materials remain available through November but are no longer being maintained.
+# 应用现代化
 
-# App modernization
+Contoso，Ltd.（Contoso）是一家从事旧业务的新公司。这家公司 2011年在新西兰奥克兰成立，提供全方位的长期保险服务，以帮助投保不足的个人，填补其创始人在市场中所看到的空白。从公司成立，它们的增长速度就超出了预期，并努力应对快速增长。仅在第一年，他们就增加了100多名新员工，以满足他们对服务的需求。为了管理策略和相关文档，他们使用自定义开发的Windows Forms应用程序，称为PolicyConnect。PolicyConnect使用本地SQL Server 2008 R2数据库作为其数据存储，并使用其局域网上的文件服务器存储策略文档。该应用程序及其用于管理策略的基础流程变得越来越过载。
 
-Contoso, Ltd. (Contoso) is a new company in an old business. Founded in Auckland, NZ, in 2011, they provide a full range of long-term insurance services to help individuals who are under-insured, filling a void their founders saw in the market. From the beginning, they grew faster than anticipated and have struggled to cope with rapid growth. During their first year alone, they added over 100 new employees to keep up with the demand for their services. To manage policies and associated documentation, they use a custom-developed Windows Forms application, called PolicyConnect. PolicyConnect uses an on-premises SQL Server 2008 R2 database as its data store, along with a file server on its local area network for storing policy documents. That application and its underlying processes for managing policies have become increasingly overloaded.
+Contoso最近启动了一个新的Web和移动项目，以使保单持有人，经纪人和员工无需通过问Contoso网络的VPN连接即可访问策略信息。该Web项目是.NET Core 3.1 MVC Web应用程序，它使用REST API访问PolicyConnect数据库。他们最终打算在所有应用程序中共享REST API，包括移动应用程序和PolicyConnect的WinForms版本。他们拥有在本地运行的Web应用程序的原型，并且有兴趣通过将应用程序托管在云中来进一步推进其现代化工作。但是，由于他们没有使用云的经验，因此他们不知道如何利用云的所有托管服务。
 
-Contoso recently started a new web and mobile projects to allow policyholders, brokers, and employees to access policy information without requiring a VPN connection into the Contoso network. The web project is a .NET Core 2.2 MVC web application, which accesses the PolicyConnect database using REST APIs. They eventually intend to share the REST APIs across all their applications, including the mobile app and WinForms version of PolicyConnect. They have a prototype of the web application running on-premises and are interested in taking their modernization efforts a step further by hosting the app in the cloud. However, they don't know how to take advantage of all the managed services of the cloud since they have no experience with it. They would like some direction for converting what they have created so far into a more cloud-native application.
+他们还没有开始开发移动应用程序。Contoso正在寻找有关如何采用对.NET开发人员友好的方法在Android和iOS上实施PolicyConnect移动应用程序的指南。
 
-They have not started the development of a mobile app yet. Contoso is looking for guidance on how to take a .NET developer-friendly approach to implement the PolicyConnect mobile app on Android and iOS.
+为了准备在云中托管其应用程序，他们希望将其SQL Server数据库迁移到Azure中的PaaS SQL服务。Contoso希望利用Azure中完全托管的SQL服务中提供的高级安全功能。通过迁移到云，他们希望提高其技术能力，并利用迁移到云中实现的增强功能和服务。他们希望添加的新功能包括：从经纪人自动转发文档，对经纪人的安全访问，对策略信息的访问以及为分散的员工提供可靠的策略检索。他们已经清楚他们将继续在本地使用PolicyConnect WinForms应用程序，但希望更新该应用程序以使用基于云的API和服务。  
 
-To prepare for hosting their applications in the cloud, they would like to migrate their SQL Server database to a PaaS SQL service in Azure. Contoso is hoping to take advantage of the advanced security features available in a fully managed SQL service in the Azure. By migrating to the cloud, they hope to improve their technological capabilities and take advantage of enhancements and services that are enabled by moving to the cloud. The new features they would like to add are automated document forwarding from brokers, secure access for brokers, access to policy information, and reliable policy retrieval for a dispersed workforce. They have been clear that they will continue using the PolicyConnect WinForms application on-premises but want to update the application to use cloud-based APIs and services. Additionally, they want to store policy documents in cloud storage for retrieval via the web and mobile apps.
+2020 年6月
 
-June 2020
+## 目标受众
 
-## Target audience
+- 应用程序开发人员
 
-- Application developer
+## 摘要
 
-## Abstracts
+### 研讨会
 
-### Workshop
+在本研讨会中，您将通过利用云服务更好地理解 对本地老的应用程序和基础架构进行现代化所涉及的步骤。您还将看到如何通过添加Web和移动服务的组合来增强应用程序，所有这些都使用Azure Active Directory保护。
 
-In this workshop, you gain a better understanding of the steps involved in modernizing legacy on-premises applications and infrastructure by leveraging cloud services. You also see how applications can be enhanced by adding a mix of web and mobile services, all secured using Azure Active Directory.
+在本研讨会结束时，将提高您为希望将服务从本地迁移到云的组织设计和实施现代化计划的能力。
 
-At the end of this workshop, your ability to design and implement a modernization plan for organizations looking to move services from on-premises to the cloud will be improved.
 
-### Whiteboard design session
+### 白板设计会议
 
-In this whiteboard design session, you work with a group to design a solution for modernizing legacy on-premises applications and infrastructure by leveraging cloud services. As part of the modernization effort, application enhancements are added using a mix of web and mobile services, all secured using Azure Active Directory.
+在此白板设计会议中，您将与一个小组一起设计一种解决方案，以通过利用云服务来现代化旧式本地应用程序和基础架构。作为现代化工作的一部分，使用Web和移动服务的组合添加了应用程序增强功能，所有这些功能都使用Azure Active Directory保护。
 
-At the end of this whiteboard design session, your ability to design a modernization plan for organizations looking to move services from on-premises to the cloud will be improved.
+在本白板设计课程的最后，您将提高为希望将服务从本地迁移到云的组织设计现代化计划的能力。
 
-### Hands-on lab
+### 动手实验
 
-In this hands-on lab, you implement the steps to modernize a legacy on-premises application, including upgrading and migrating the database to Azure and updating the application to take advantage of serverless and cloud services.
+在此动手实验中，您将实现 一个 老式本地应用程序 进行现代化改造的步骤，包括将数据库升级和迁移到Azure以及更新应用程序以利用无服务器和云服务。
 
-At the end of this hands-on lab, your ability to build solutions for modernizing legacy on-premises applications and infrastructure using cloud services will be improved.
+在本动手实验的最后，您将提高构建解决方案的能力，以使使用云服务的老式本地应用程序和基础结构现代化。
 
-## Azure services and related products
+## Azure 服务和相关产品
 
 - API Management
 - App Services
@@ -60,3 +59,16 @@ At the end of this hands-on lab, your ability to build solutions for modernizing
 - [Reference architecture for Managed Web Applications](https://docs.microsoft.com/azure/architecture/reference-architectures/app-service-web-app/basic-web-app)
 - [Azure application architecture guide](https://docs.microsoft.com/azure/architecture/guide/)
 
+## Help & Support
+
+We welcome feedback and comments from Microsoft SMEs & learning partners who deliver MCWs.
+
+**_Having trouble?_**
+
+- First, verify you have followed all written lab instructions (including the Before the Hands-on lab document).
+- Next, submit an issue with a detailed description of the problem.
+- Do not submit pull requests. Our content authors will make all changes and submit pull requests for approval.
+
+If you are planning to present a workshop, _review and test the materials early_! We recommend at least two weeks prior.
+
+### Please allow 5 - 10 business days for review and resolution of issues.

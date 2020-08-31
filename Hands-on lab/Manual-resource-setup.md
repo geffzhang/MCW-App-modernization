@@ -1,35 +1,35 @@
-# Manual resource setup guide
+# 手动资源设置指南
 
-This guide provides step-by-step instructions to manually provision and configure the resources created by the ARM template used before the hands-on lab guide.
+本指南提供分步说明，用于手动预配和配置在动手实验指南之前使用的 ARM 模板创建的资源。
 
-> **IMPORTANT**: Many Azure resources require globally unique names. Throughout these steps, the word "SUFFIX" appears as part of resource names. You should replace this with your Microsoft alias, initials, or another value to ensure resources are uniquely named.
+> **IMPORTANT**: 重要提示：许多 Azure 资源需要全局唯一名称。在整个步骤中，"SUFFIX"一词显示为资源名称的一部分。应将其替换为 Microsoft 别名、首字母缩写或其他值，以确保资源唯一命名。
 
 June 2020
 
 **Contents**:
 
-- [Manual resource setup guide](#manual-resource-setup-guide)
-  - [Task 1: Create an Azure Storage account](#task-1-create-an-azure-storage-account)
-  - [Task 2: Create the LabVM](#task-2-create-the-labvm)
-  - [Task 3: Create SQL Server 2008 R2 virtual machine](#task-3-create-sql-server-2008-r2-virtual-machine)
-  - [Task 4: Provision an Azure SQL Database](#task-4-provision-an-azure-sql-database)
-  - [Task 5: Create Azure Database Migration Service](#task-5-create-azure-database-migration-service)
-  - [Task 6: Provision a Web App](#task-6-provision-a-web-app)
-  - [Task 7: Provision an API App](#task-7-provision-an-api-app)
-  - [Task 8: Provision a Function App](#task-8-provision-a-function-app)
-  - [Task 9: Provision API Management](#task-9-provision-api-management)
-  - [Task 10: Create Azure Cognitive Search service](#task-10-create-azure-cognitive-search-service)
-  - [Task 11: Create Cognitive Services account](#task-11-create-cognitive-services-account)
-  - [Task 12: Create an Azure Key Vault](#task-12-create-an-azure-key-vault)
-  - [Task 13: Connect to the Lab VM](#task-13-connect-to-the-lab-vm)
-  - [Task 14: Install required software on the LabVM](#task-14-install-required-software-on-the-labvm)
-  - [Task 15: Connect to SqlServer2008 VM](#task-15-connect-to-sqlserver2008-vm)
-  - [Task 16: Restore and configure the ContosoInsurance database on the SqlServer2008 VM](#task-16-restore-and-configure-the-contosoinsurance-database-on-the-sqlserver2008-vm)
-  - [Task 17: Install the Microsoft Data Migration Assistant on the SqlServer2008 VM](#task-17-install-the-microsoft-data-migration-assistant-on-the-sqlserver2008-vm)
+- [手动资源设置指南](#手动资源设置指南)
+  - [任务 1: 创建 Azure 存储帐户](#任务-1-创建-azure-存储帐户)
+  - [步骤 2: 创建 LabVM](#步骤-2-创建-labvm)
+  - [任务 3：创建 SQL Server 2008 R2 虚拟机](#任务-3创建-sql-server-2008-r2-虚拟机)
+  - [步骤 4: 预配 Azure SQL 数据库](#步骤-4-预配-azure-sql-数据库)
+  - [任务 5：创建 Azure 数据库迁移服务](#任务-5创建-azure-数据库迁移服务)
+  - [任务 6：预配 Web 应用](#任务-6预配-web-应用)
+  - [任务 7：预配 API 应用](#任务-7预配-api-应用)
+  - [任务 8：预配函数应用](#任务-8预配函数应用)
+  - [任务 9：预配 API 管理](#任务-9预配-api-管理)
+  - [任务 10：创建 Azure 认知搜索服务](#任务-10创建-azure-认知搜索服务)
+  - [任务 11：创建认知服务帐户](#任务-11创建认知服务帐户)
+  - [任务 12：创建 Azure 密钥保管库](#任务-12创建-azure-密钥保管库)
+  - [任务 13：连接到Lab VM](#任务-13连接到lab-vm)
+  - [任务 14：在 LabVM 上安装所需的软件](#任务-14在-labvm-上安装所需的软件)
+  - [任务 15：连接到 SqlServer2008 VM](#任务-15连接到-sqlserver2008-vm)
+  - [任务 16：在 SqlServer2008 VM 上还原和配置 Contoso 保险数据库](#任务-16在-sqlserver2008-vm-上还原和配置-contoso-保险数据库)
+  - [任务 17：在 SqlServer2008 VM 上安装 Microsoft 数据迁移助手](#任务-17在-sqlserver2008-vm-上安装-microsoft-数据迁移助手)
 
-## Task 1: Create an Azure Storage account
+## 任务 1: 创建 Azure 存储帐户
 
-In this task, you provision an Azure Storage account, which is used for storing policy documents, as well as vulnerability assessments performed using SQL Advanced Data Security.
+在此任务中，预配 Azure 存储帐户，该帐户用于存储策略文档，以及使用 SQL 高级数据安全执行的漏洞评估。
 
 1. In the [Azure portal](https://portal.azure.com/), select the **Show portal menu** icon and then select **+Create a resource** from the menu.
 
@@ -61,9 +61,9 @@ In this task, you provision an Azure Storage account, which is used for storing 
 
 5. On the **Review + create** blade, ensure the Validation passed message is displayed and then select **Create**.
 
-## Task 2: Create the LabVM
+## 步骤 2: 创建 LabVM
 
-In this task, you provision a virtual machine (VM) in Azure. The VM image used has the latest version of Visual Studio Community 2019 installed.
+在此任务中，在 Azure 中预配虚拟机 （VM）。使用的 VM 映像安装了最新版本的 Visual Studio 2019 社区版。
 
 1. In the [Azure portal](https://portal.azure.com/), select the **Show portal menu** icon and then select **+Create a resource** from the menu.
 
@@ -115,11 +115,11 @@ In this task, you provision a virtual machine (VM) in Azure. The VM image used h
 
 7. It takes approximately 10 minutes for the VM to finish provisioning. You can move on to the next task while you wait.
 
-## Task 3: Create SQL Server 2008 R2 virtual machine
+## 任务 3：创建 SQL Server 2008 R2 虚拟机
 
-In this task, you provision another Azure virtual machine (VM) to host your "on-premises" instance of SQL Server 2008 R2. The VM uses the SQL Server 2008 R2 SP3 Standard on Windows Server 2008 R2 image.
+在此任务中，预配另一个 Azure 虚拟机 （VM） 以托管 SQL Server 2008 R2 的"本地"实例。VM 在 Windows Server 2008 R2 映像上使用 SQL Server 2008 R2 SP3 标准。
 
-> **Note**: An older version of Windows Server is being used because SQL Server 2008 R2 is not supported on Windows Server 2016.
+> **Note**: 由于 Windows Server 2016 不支持 SQL Server 2008 R2，因此正在使用旧版本的 Windows 服务器。
 
 1. In the [Azure portal](https://portal.azure.com/), select the **Show portal menu** icon and then select **+Create a resource** from the menu.
 
@@ -186,9 +186,9 @@ In this task, you provision another Azure virtual machine (VM) to host your "on-
 
 9. It may take 10+ minutes for the virtual machine to complete provisioning. You can move on to the next task while waiting for the SqlServer2008 VM to provision.
 
-## Task 4: Provision an Azure SQL Database
+## 步骤 4: 预配 Azure SQL 数据库
 
-In this task, you provision an Azure SQL Database (Azure SQL DB).
+在此任务中，预配 Azure SQL 数据库 （Azure SQL DB）。
 
 1. In the [Azure portal](https://portal.azure.com/), select the **Show portal menu** icon and then select **+Create a resource** from the menu.
 
@@ -239,7 +239,7 @@ In this task, you provision an Azure SQL Database (Azure SQL DB).
 
 9. On the **Review + create** tab, select **Create** to provision the SQL Database.
 
-## Task 5: Create Azure Database Migration Service
+## 任务 5：创建 Azure 数据库迁移服务
 
 In this task, you provision an instance of the Azure Database Migration Service (DMS).
 
@@ -281,9 +281,9 @@ In this task, you provision an instance of the Azure Database Migration Service 
 
 8. It can take 15 minutes to deploy the Azure Data Migration Service. You can move on to the next task while you wait.
 
-## Task 6: Provision a Web App
+## 任务 6：预配 Web 应用
 
-In this task, you provision an App Service (Web App), which provides hosting for the Contoso Insurance web application.
+在此任务中，您将预配应用服务 （Web App），它为 Contoso 保险 Web 应用程序提供托管。
 
 1. In the [Azure portal](https://portal.azure.com/), select the **Show portal menu** icon and then select **+Create a resource** from the menu.
 
@@ -331,7 +331,7 @@ In this task, you provision an App Service (Web App), which provides hosting for
 
 9. It takes a few minutes for the Web App creation to complete. You can move on to the next task while you wait.
 
-## Task 7: Provision an API App
+## 任务 7：预配 API 应用
 
 In this task, you provision an App Service (API App), which provides hosting for the Contoso Insurance APIs.
 
@@ -357,7 +357,7 @@ In this task, you provision an App Service (API App), which provides hosting for
 
 5. Select **Create**.
 
-## Task 8: Provision a Function App
+## 任务 8：预配函数应用
 
 In this task, you provision a Function App, which is used for retrieving PDF documents from Azure Storage.
 
@@ -408,7 +408,7 @@ In this task, you provision a Function App, which is used for retrieving PDF doc
 
 8. Select **Create**.
 
-## Task 9: Provision API Management
+## 任务 9：预配 API 管理
 
 In this task, you provision API Management (APIM). APIM provides the ability to manage the Contoso APIs.
 
@@ -439,7 +439,7 @@ In this task, you provision API Management (APIM). APIM provides the ability to 
 
 6. It takes around 30 minutes for API Management to finish provisioning. You can move on to the next task while you wait.
 
-## Task 10: Create Azure Cognitive Search service
+## 任务 10：创建 Azure 认知搜索服务
 
 In this task, you create an Azure Cognitive Search service.
 
@@ -472,7 +472,7 @@ In this task, you create an Azure Cognitive Search service.
 
 7. It takes around 10 minutes for the new search service to finish provisioning. You can move on to the next task while you wait.
 
-## Task 11: Create Cognitive Services account
+## 任务 11：创建认知服务帐户
 
 In this task, you create a Cognitive Services account.
 
@@ -499,7 +499,7 @@ In this task, you create a Cognitive Services account.
 
 5. Select **Create**.
 
-## Task 12: Create an Azure Key Vault
+## 任务 12：创建 Azure 密钥保管库
 
 In this task, you provision an Azure Key Vault, which enables application secrets to be stored securely.
 
@@ -535,9 +535,9 @@ In this task, you provision an Azure Key Vault, which enables application secret
 
 6. On the **Review + create** tab, select **Create**.
 
-## Task 13: Connect to the Lab VM
+## 任务 13：连接到Lab VM
 
-In this task, you create an RDP connection to your Lab virtual machine (VM), and disable Internet Explorer Enhanced Security Configuration.
+在此任务中，创建到实验室虚拟机 （VM） 的 RDP 连接，并禁用 Internet 资源管理器增强的安全配置。
 
 1. In the [Azure portal](https://portal.azure.com), select **Resource groups** from the Azure services list.
 
@@ -586,7 +586,7 @@ In this task, you create an RDP connection to your Lab virtual machine (VM), and
 
 12. Close the Server Manager, but leave the connection to the LabVM open for the next task.
 
-## Task 14: Install required software on the LabVM
+## 任务 14：在 LabVM 上安装所需的软件
 
 In this task, you configure the LabVM with the required software and downloads. First, you download and install SQL Server Management Studio (SSMS). Next, you download and install .NET Core 2.2. You also download a copy of the Visual Studio starter solution and unzip it into a folder named `C:\MCW`.
 
@@ -614,7 +614,7 @@ In this task, you configure the LabVM with the required software and downloads. 
 
    ![The Extract Compressed Folders dialog is displayed, with `C:\MCW` entered into the extraction location.](media/mcw-download-extract.png "Extract Compressed ZIP")
 
-## Task 15: Connect to SqlServer2008 VM
+## 任务 15：连接到 SqlServer2008 VM
 
 In this task, you open an RDP connection to the SqlServer2008 VM, disable Internet Explorer Enhanced Security Configuration, and add a firewall rule to open port 1433 to inbound TCP traffic.
 
@@ -651,7 +651,7 @@ In this task, you open an RDP connection to the SqlServer2008 VM, disable Intern
 
    ![Screenshot of the Internet Explorer Enhanced Security Configuration dialog box, with Administrators set to Off.](./media/2008-internet-explorer-enhanced-security-configuration-dialog.png "Internet Explorer Enhanced Security Configuration dialog box")
 
-## Task 16: Restore and configure the ContosoInsurance database on the SqlServer2008 VM
+## 任务 16：在 SqlServer2008 VM 上还原和配置 Contoso 保险数据库
 
 In this task, you restore the `ContosoInsurance` database onto the SQL Server 2008 R2 instance using a backup provided by Contoso, Ltd.
 
@@ -681,7 +681,7 @@ In this task, you restore the `ContosoInsurance` database onto the SQL Server 20
 
    ![The ContosoInsurance database is highlighted in the list of databases.](media/ssms-databases.png "Databases")
 
-## Task 17: Install the Microsoft Data Migration Assistant on the SqlServer2008 VM
+## 任务 17：在 SqlServer2008 VM 上安装 Microsoft 数据迁移助手
 
 In this task, you install the Microsoft Data Migration Assistant (DMA) on the SqlServer2008 VM.
 

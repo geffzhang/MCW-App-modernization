@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Hosting;
 
 namespace Contoso.WebApi
 {
@@ -12,19 +13,24 @@ namespace Contoso.WebApi
             CreateWebHostBuilder(args).Build().Run();
         }
 
-        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
-                .ConfigureAppConfiguration((context, config) =>
+        public static IHostBuilder CreateWebHostBuilder(string[] args) =>
+            Host.CreateDefaultBuilder(args)
+            .ConfigureAppConfiguration((context, config) =>
+            {
+                var buildConfig = config.Build();
+
+                config.AddEnvironmentVariables();
+
+                // ******************************************
+                // TODO #1: Insert code into this block to create a connection to Azure Key Vault.
+                //config.// Add the appropriate "Add" statement and insert the requried Key Vault configuration settings
+                // ******************************************
+            })
+                .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    var buildConfig = config.Build();
 
-                    config.AddEnvironmentVariables();
+                    webBuilder.UseStartup<Startup>();
+                });
 
-                    // ******************************************
-                    // TODO #1: Insert code into this block to create a connection to Azure Key Vault.
-                    config.// Add the appropriate "Add" statement and insert the requried Key Vault configuration settings
-                    // ******************************************
-                })
-                .UseStartup<Startup>();
     }
 }
